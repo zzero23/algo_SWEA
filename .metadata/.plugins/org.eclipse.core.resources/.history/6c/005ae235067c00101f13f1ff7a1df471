@@ -1,0 +1,46 @@
+package BAEKJOON_numlink;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Solution_01 {
+
+	public static void main(String[] args) throws FileNotFoundException {
+		File file = new File("./src/BAEKJOON_numlink/input.txt");
+		Scanner sc = new Scanner(file);
+//		Scanner sc = new Scanner(System.in);
+		
+		int N = sc.nextInt(); // 첫번째 수
+		
+		int max = 0;
+		List<Integer> R = new ArrayList<>();
+		for (int i = 1; i < N; i++) {
+			List<Integer> L = new ArrayList<>();
+			L.add(N); // 첫번째 수 추가
+			L.add(N - i); // 두번째 수 추가
+			
+			int n = 0;
+			while (L.get(n) - L.get(n+1) >= 0) {
+				L.add(L.get(n) - L.get(n+1));
+				n++;
+			}
+			
+			int D = L.size();
+			if (D > max) {
+				max = D;
+				R = L;
+			}
+		} // for : 두번째로 넣는 값이 100보다 작을 때까지 반복
+		
+		System.out.println(R);
+		System.out.println(L);
+				
+		System.out.println(max);
+		for (int i = 0; i < R.size(); i++) {
+			System.out.print(R.get(i) + " ");
+		}
+	}
+}

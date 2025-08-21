@@ -1,0 +1,64 @@
+package BAEKJOON_numlink;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Solution_01 {
+
+	public static void main(String[] args) throws FileNotFoundException {
+		File file = new File("./src/BAEKJOON_numlink/input.txt");
+		Scanner sc = new Scanner(file);
+//		Scanner sc = new Scanner(System.in);
+		
+		int N = sc.nextInt(); // 첫번째 수
+		
+		int max = 0;
+		List<Integer> R = new ArrayList<>();
+		boolean isWrong = true;
+		while (true) {
+			List<Integer> L = new ArrayList<>(); // 임의의 빈 리스트 생성
+			L.add(N);
+
+			int tmp = 0;
+			for (int i = tmp; i < N; i++) {
+				int num = N - i - 1;
+				L.add(num);
+				int maxL = 0;
+				int n = 0;
+				max = 0;
+				while (true) {
+					if (L.get(n) - L.get(n+1) < 0) {
+						maxL = L.size();
+						System.out.println(max);
+						if (maxL > max) {
+							max = maxL;
+							R = L;
+						}
+						break;
+					} else {
+						L.add(L.get(n) - L.get(n+1));
+					}
+					n++;
+				}
+				tmp++;
+				if (tmp == N - 1) {
+					isWrong = false;
+					break;
+				}
+			} // for : 첫번째 양의 정수 순회
+			if (!isWrong) {
+				break;
+			}
+		} // while : 마지막 수가 음수이기 전까지
+		
+		System.out.println(max);
+		for (int i = 0; i < R.size(); i++) {
+			System.out.print(R.get(i) + " ");
+		}
+
+	}
+
+}

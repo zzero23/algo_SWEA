@@ -1,0 +1,28 @@
+package SWEA_snail_1954;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class Solution_01 {
+
+	public static void main(String[] args) throws FileNotFoundException {
+		File file = new File("./src/SWEA_snail_1954/input.txt");
+		Scanner sc = new Scanner(file);
+//		Scanner sc = new Scanner(System.in);
+		
+		int T = sc.nextInt(); // 테스트 케이스 수
+		for (int tc = 1; tc < T+1; tc++) {
+			int N = sc.nextInt(); 
+			int[][] I = new int[N][N]; // NxN 배열
+			
+			int dr = 1;
+			int c = N;
+			int r = 0;
+			int num = 0;
+			for (int i = 0; r < N;)
+		} // for : 테스트 결과 출력
+
+	}
+
+}

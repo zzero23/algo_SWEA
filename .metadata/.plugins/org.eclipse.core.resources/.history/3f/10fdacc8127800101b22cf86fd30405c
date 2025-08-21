@@ -1,0 +1,38 @@
+package SWEA_richguyPJT_1859;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.Stack;
+
+public class Solution_01 {
+
+	public static void main(String[] args) throws FileNotFoundException {
+		File file = new File("./src/SWEA_richguyPJT_1859/input.txt");
+		Scanner sc = new Scanner(file);
+//		Scanner sc = new Scanner(System.in);
+		
+		int T = sc.nextInt(); // 테스트케이스 수
+		for (int tc = 0; tc < T+1; tc++) {
+			int N = sc.nextInt();
+			
+			int R = 0;
+			Stack<Integer> S = new Stack<>();
+			for (int i = 0; i < N; i++) {
+				S.add(sc.nextInt());
+			}
+			
+			while(!S.isEmpty()) {
+				int num = S.pop();
+				if (S.peek() >= num) {
+					continue;
+				} else {
+					R += num - S.peek();
+				}
+			}
+			
+			System.out.printf("#%d %d", tc, R);
+		} // for : 테스트 결과 출력
+	}
+
+}

@@ -1,0 +1,60 @@
+package SWEA_junggon_6190;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Solution_01 {
+
+	public static void main(String[] args) throws FileNotFoundException {
+		File file = new File("./src/SWEA_junggon_6190/s_input.txt");
+		Scanner sc = new Scanner(file);
+//		Scanner sc = new Scanner(System.in);
+		
+		int T = sc.nextInt(); // 테스트케이스 수
+		for (int tc = 1; tc < T+1; tc++) {
+			int N = sc.nextInt(); // 정수
+			
+			String[] S = new String[N];
+			for (int i = 0; i < S.length; i++) {
+				S[i] = sc.next();
+			} // for : 정수 배열 생성
+			
+			boolean isTrue = true;
+			List<String> L = new ArrayList<>();
+			for (String s : S) {
+				char[] C = s.toCharArray();
+				if (C.length == 1) {
+					L.add(s);
+					continue;
+				}
+				for (int i = 0; i < C.length-1; i++) {
+					if (C[i] > C[i+1]) {
+						isTrue = false;
+						break;
+					}
+				}
+				if (isTrue) {
+					L.add(s);
+				}
+			}
+			
+			System.out.println(L);
+			int max = -1;
+			if (L.size() > 0) {
+				for (String l1 : L) {
+					for (String l2 : L) {
+						int R = Integer.parseInt(l1) * Integer.parseInt(l2);
+						if (R > max) {
+							max = R;
+						}
+					}
+				}
+			}
+			System.out.printf("#%d %d\n", tc, max);
+		} // for : 테스트 결과 출력
+	}
+
+}

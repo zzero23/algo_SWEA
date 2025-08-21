@@ -1,0 +1,40 @@
+package SWEA_wonjae_1289;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.Stack;
+
+public class Solution_01 {
+
+	public static void main(String[] args) throws FileNotFoundException {
+		File file = new File("./src/SWEA_wonjae_1289/input.txt");
+		Scanner sc = new Scanner(file);
+//		Scanner sc = new Scanner(System.in);
+		
+		int T = sc.nextInt(); // 테스트케이스 수
+		for (int tc = 1; tc < 2; tc++) {
+			char[] C = sc.next().toCharArray();
+			Stack<Character> S = new Stack<>();
+			
+			int count = 0;
+			for (char c : C) {
+				System.out.println(c);
+				if (S.isEmpty()) {
+					S.push(c);
+					if (c == '1') {
+						count++;
+					}
+				} else if (!S.isEmpty() && c == S.peek()) {
+					continue;
+				} else {
+					count++;
+				}
+			}
+			
+			System.out.printf("#%d %d\n", tc, count);
+		} // for : 테스트 결과 출력
+
+	}
+
+}

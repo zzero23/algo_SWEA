@@ -1,0 +1,57 @@
+package SWEA_words_1979;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Arrays;
+import java.util.Scanner;
+import java.util.Stack;
+
+public class Solution_01 {
+
+	public static void main(String[] args) throws FileNotFoundException {
+		File file = new File("./src/SWEA_words_1979/input.txt");
+		Scanner sc = new Scanner(file);
+//		Scanner sc = new Scanner(System.in);
+		
+		int T = sc.nextInt(); // 테스트 케이스 수
+		for (int tc = 1; tc < T+1; tc++) {
+			int N = sc.nextInt(); // 단어 퍼즐 배열
+			int K = sc.nextInt(); // 단어 길이
+			
+			int[][] I = new int[N][N];
+			for (int r = 0; r < N; r++) {
+				for (int c = 0; c < N; c++) {
+					I[r][c] = sc.nextInt();
+				}
+			} //  for : 단어 퍼즐 배열 완성
+			
+			int resultC = 0;
+			for (int r = 0; r < N; r++) {
+				int count = 0;
+				for (int c = 0; c < N-1; c++) {
+					if (I[r][c] == 1) {
+						count++;
+					}
+					if ((count == 3 && I[r][c+1] == 0) || (count == 2 && I[r][N-1] == 1)) {
+						count = 0;
+						resultC++;
+					}
+				}
+				
+				count = 0;
+				for (int c = 0; c < N-1; c++) {
+					if (I[c][r] == 1) {
+						count++;
+					}
+					if ((count == 3 && I[c+1][r] == 0) || (count == 2 && I[N-1][r] == 1)) {
+						count = 0;
+						resultC++;
+					}
+				}
+			}
+			
+			System.out.printf("#%d %d\n", tc, resultC);
+		} // for : 테스트 결과 출력
+	}
+
+}

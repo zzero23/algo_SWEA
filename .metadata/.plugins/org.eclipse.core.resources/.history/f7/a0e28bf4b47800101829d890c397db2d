@@ -1,0 +1,38 @@
+package SWEA_twoInt_1959;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Solution_01 {
+
+	public static void main(String[] args) throws FileNotFoundException {
+		File file = new File("./src/SWEA_twoInt_1959/input.txt");
+		Scanner sc = new Scanner(file);
+//		Scanner sc = new Scanner(System.in);
+		
+		int T = sc.nextInt(); // 테스트케이스 수
+		for (int tc = 1; tc < T+1; tc++) {
+			int N = sc.nextInt(); // 첫번째 숫자열
+			int M = sc.nextInt(); // 두번째 숫자열
+			
+			int[] NI = new int[N];
+			int[] MI = new int[M];
+			for (int i = 0; i < N; i++) {
+				NI[i] = sc.nextInt();
+			} // for : 첫번째 숫자열
+			for (int i = 0; i < N; i++) {
+				NI[i] = sc.nextInt();
+			} // for : 두번째 숫자열
+			
+			int[] L; int[] S;
+			if (NI.length < MI.length)
+				L = MI; S = NI;
+			L = NI; S = MI;// if : 더 긴 숫자열 판별
+			
+			System.out.println(Arrays.toString(L));
+			System.out.println(Arrays.toString(S));
+		} // for : 테스트 결과 출력
+	}
+}
